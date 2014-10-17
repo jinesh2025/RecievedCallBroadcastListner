@@ -21,6 +21,7 @@ public class MyActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_my);
 		textView = (TextView) findViewById(R.id.tv);
+
 		getCallDetails();
 	}
 
@@ -34,14 +35,18 @@ public class MyActivity extends Activity {
 		int date = managedCursor.getColumnIndex(CallLog.Calls.DATE);
 		int duration = managedCursor.getColumnIndex(CallLog.Calls.DURATION);
 		sb.append("Call Log :");
+
 		while (managedCursor.moveToNext()) {
+
 			String phNumber = managedCursor.getString(number);
 			String callType = managedCursor.getString(type);
 			String callDate = managedCursor.getString(date);
 			Date callDayTime = new Date(Long.valueOf(callDate));
 			String callDuration = managedCursor.getString(duration);
 			String dir = null;
+
 			int dircode = Integer.parseInt(callType);
+
 			switch (dircode) {
 				case CallLog.Calls.OUTGOING_TYPE:
 					dir = "OUTGOING";
